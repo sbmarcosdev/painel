@@ -63,38 +63,6 @@
 
                 <div class="card-body">  
                             
-                    <div class="table-responsive">
-
-                             <table id="table" name="table" class="table table-striped table-bordered mt-3" style="font-size:1.9vh;">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Tipo</th>
-                                        <th>Descrição</th>
-                                        <th>Valor</th>
-                                        <th>Data Resposição</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead> 
-                                
- 
-                                 <tbody>
-                                    @forelse($prods as $prod)
-                                    <tr>
-                                        <td>{{ $prod->id }}</td>
-                                        <td>{{ $prod->tipo }}</td>
-                                        <td>{{ $prod->descricao }}</td>
-                                        <td>{{ $prod->valor_unitario }}</td>
-                                        <td>{{ $prod->updated_at }}</td>
-                                        <td>
-                                            <button title="Editar" class="btn btn-outline-secondary" onclick="window.location='{{ url('/produto/'.$prod->id.'/edit/' )}}'">  
-                                            <img src="{{ asset('img/001-editar.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>   
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    @endforelse
-                                </tbody> 
-                            </table>
                     </div>
                     <button title="Incluir Novo" class="btn btn-outline-secondary" onclick="window.location='{{url('produto/create')}}'">  
                                            Incluir <img src="{{ asset('img/documentos.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>
