@@ -3,12 +3,14 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('bti');
+// Route::get('/', 'HomeController@index')->name('bti');
 
 Route::get('/fatura', 'BtiController@report')->name('fatura');
-Route::post('/bti-user', 'BtiController@usuario_empresa');
+Route::post('/bti-user', 'BtiController@getEmpresa');
 
-Route::get('/', 'BtiController@index')->name('bti');
+Route::get('/login', 'BtiController@index')->name('login');
+
+Route::get('/', 'BtiController@index');
 
 Route::resource('produto', 'ProdutoController');
 Route::resource('tabelas', 'TabelaController');

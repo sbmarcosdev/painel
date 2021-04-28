@@ -15,17 +15,7 @@
                             <label for="empresa" class="col-md-4 col-form-label text-md-right">Empresa</label>
 
                             <div class="col-md-6">
-                                <select id="empresa" onchange="jsEmpresa(this.value)" class="form-control" required >
-                             
-                                <option value="" disabled selected>Selecione Empresa</option>
-
-                                    @foreach ($empresas as $empresa)
-            
-                                        <option value="{{$empresa->id }}">{{ $empresa->nome }}</option>
-                                    
-                                    @endforeach
-                                    
-                                </select>
+                                <input type="text" id="empresa" class="form-control" required readonly>
                             </div>
                         </div>
 
@@ -33,7 +23,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" onchange="jsEmpresa()" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -91,18 +81,20 @@
 
 @endsection
 <script>
-    function jsEmpresa(id){
+    function jsEmpresa(){
 
         var token = $('input[name="_token"]').val();
+        var email = $('#email').val();
 
         $.ajax({
                 url: '/bti-user',
                 type: 'post',
-                data:{"_token":token,"empresa_id":id},
+                data:{"_token":token,"email":email},
                 success: function(result){
+                    $('#empresa').val(result);
                 }
             });
-        
-    } 
+
+    }
 </script>
 

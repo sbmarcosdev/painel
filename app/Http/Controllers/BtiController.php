@@ -12,14 +12,22 @@ class BtiController extends Controller
 {
     public function index()
     {
-        $empresas = Empresa::all();
-        return view('bti_login.login', compact('empresas'));
+        return view('bti_login.login');
+    }
+
+    public function getEmpresa(Request $request)
+    {
+        $user = User::where('email', $request->email )->first();
+
+        return $user ? $user->empresa()->nome : null;
     }
 
     public function usuario_empresa(Request $request)
     {
         session()->put(['empresa_id' => $request->empresa_id]);
+
         $user = User::find(Auth::user()->id);
+
         $user->update(['empresa_id' => $request->empresa_id]);
     }
 
@@ -31,7 +39,7 @@ class BtiController extends Controller
 
         $faturas = Fatura::all();
 
-        return view('relatorio', compact('empresa','faturas'));
+        return view('tabelas.relatorio', compact('empresa','faturas'));
     }
 
 

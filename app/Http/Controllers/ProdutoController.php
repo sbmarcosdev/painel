@@ -8,12 +8,16 @@ use App\Produto;
 class ProdutoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         return view('produto.create');
     }
 
-  
     public function store(Request $request)
     {
         Produto::create([ 'tipo'=>$request->tipo,
@@ -22,7 +26,7 @@ class ProdutoController extends Controller
         'cor'=>$request->cor
         ]);
 
-        return redirect('home');     
+        return redirect('home');
     }
 
 
@@ -44,7 +48,7 @@ class ProdutoController extends Controller
                         'cor'=>$request->cor
                         ]);
 
-        return redirect('home');                
+        return redirect('home');
     }
 
 }

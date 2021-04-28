@@ -56,10 +56,15 @@
                                 <a class="nav-link" href="{{ url('usuarios') }}"> Usuários  </a>
                             </li>
                         @endif
+                        @if ( Auth::user()->empresa_id )
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('home') }}">  Dashboard  </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
+                            </li>
+                        @endif
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

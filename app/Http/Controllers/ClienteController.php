@@ -7,6 +7,11 @@ use App\Cliente;
 
 class ClienteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         return view('cliente.create');
@@ -14,13 +19,13 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        Cliente::create([ 
+        Cliente::create([
                           'nome'=>$request->nome,
                           'email'=>$request->email,
                           'valor'=>$request->ciclo
                         ]);
 
-        return redirect('home');     
+        return redirect('home');
     }
 
     public function edit($id)
@@ -34,12 +39,12 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::find($id);
 
-        $cliente->update([  
+        $cliente->update([
                             'nome'=>$request->nome,
                             'email'=>$request->email,
                             'valor'=>$request->ciclo
                         ]);
 
-        return redirect('home');                
+        return redirect('home');
     }
 }

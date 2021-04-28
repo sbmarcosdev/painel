@@ -43,10 +43,10 @@
                     Voltar
                 </button>
 
-                <button class=" btn btn-success m-2"  onclick="window.location = '{{url('usuarios/create')}}'">
+                {{-- <button class=" btn btn-success m-2"  onclick="window.location = '{{url('usuarios/create')}}'">
                     <img src="{{ asset('img/add-list.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
                     Incluir Usuário
-                </button>
+                </button> --}}
             </div>
             </div>
     </div>

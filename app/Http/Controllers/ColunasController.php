@@ -9,15 +9,20 @@ use App\TabelaColuna;
 
 class ColunasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function novaColuna($tabela_id)
-    {        
+    {
         $tabela = Tabela::find($tabela_id);
 
         return view('colunas.create', compact('tabela'));
     }
 
     public function edit($id)
-    {        
+    {
         $coluna = TabelaColuna::find($id);
 
         $tabela = Tabela::find($coluna->tabela_id);
@@ -37,8 +42,8 @@ class ColunasController extends Controller
     public function store(Request $request)
     {
         $coluna = TabelaColuna::create([
-                                         'tabela_id'=> $request->tabela_id, 
-                                         'nome_coluna' => $request->nome_coluna   
+                                         'tabela_id'=> $request->tabela_id,
+                                         'nome_coluna' => $request->nome_coluna
                                        ]);
 
         return redirect('tabelas/'.$coluna->tabela_id . '/edit');

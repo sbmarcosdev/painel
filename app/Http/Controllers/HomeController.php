@@ -18,6 +18,9 @@ class HomeController extends Controller
 
     public function index()
     {
+        if(Auth::user()->empresa_id){
+
+        session()->put(['empresa_id' => Auth::user()->empresa_id ]);
 
         $emp = session()->get('empresa_id');
 
@@ -27,34 +30,37 @@ class HomeController extends Controller
 
         $regs = array();
 
-        foreach ($regsdb as $reg)
-        {
+        foreach ($regsdb as $reg){
 
-            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $reg->updated_at);
-            
-            $hora2 = date_format($reg->updated_at,"H:i:s");
+                $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $reg->updated_at);
 
-            $hora1 = date_format($reg->created_at,"H:i:s");
+                $hora2 = date_format($reg->updated_at,"H:i:s");
 
-            $date2 = Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now());
-            
-            $value = $date2->diffInMinutes($date1);    
+                $hora1 = date_format($reg->created_at,"H:i:s");
 
-            $data1 = $reg->data; 
-            
-            array_push($regs, [
+                $date2 = Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now());
+
+                $value = $date2->diffInMinutes($date1);
+
+                $data1 = $reg->data;
+
+                array_push($regs, [
                                 'nome' => $reg->nome,
                                 'email'=> $reg->email,
                                 'data' => $data1,
                                 'inicio' => $hora1,
                                 'ultimo' => $hora2,
                                 'ciclo'=> $reg->valor,
-                                'diferenca' => $value,  
+                                'diferenca' => $value,
                               ]);
+                }
+
+            $prods = Produto::all();
+
+            return view('home', compact('empresa', 'regs', 'prods'));
         }
-
-        $prods = Produto::all();
-
-        return view('home', compact('empresa', 'regs', 'prods'));
+        else {
+            return view('erro');
+        }
     }
 }

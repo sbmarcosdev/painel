@@ -8,20 +8,23 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('bti-user') }}">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="empresa" class="col-md-4 col-form-label text-md-right">Empresa</label>
 
                             <div class="col-md-6">
-                                <select id="empresa" onchange="jsEmpresa(this.value)" class="form-control" name="empresa" required >
+                                <select id="empresa" onchange="jsEmpresa(this.value)" class="form-control" required >
+                             
+                                <option value="" disabled selected>Selecione Empresa</option>
 
                                     @foreach ($empresas as $empresa)
-
+            
                                         <option value="{{$empresa->id }}">{{ $empresa->nome }}</option>
-
+                                    
                                     @endforeach
+                                    
                                 </select>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -52,7 +55,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
@@ -85,19 +88,21 @@
         </div>
     </div>
 </div>
-@endsection
 
+@endsection
 <script>
     function jsEmpresa(id){
+
         var token = $('input[name="_token"]').val();
+
         $.ajax({
                 url: '/bti-user',
                 type: 'post',
-                data:{"_token":token,"empresa_id":id, "user_id":1},
+                data:{"_token":token,"empresa_id":id},
                 success: function(result){
-
                 }
             });
-    }
+        
+    } 
 </script>
 

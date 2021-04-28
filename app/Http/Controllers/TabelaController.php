@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TabelaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $tabelas = Tabela::all();
@@ -40,7 +45,7 @@ class TabelaController extends Controller
     {
         Tabela::create([
                         'empresa_id' => $request->empresa_id,
-                        'descricao_tabela' => $request->descricao_tabela 
+                        'descricao_tabela' => $request->descricao_tabela
                         ]);
 
         // return redirect();
