@@ -18,29 +18,27 @@
                                 <div class="card p-4">
                                  <div class="input-group m-3">
                                   
-                                 <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
-                                <thead>
-                                    <tr>
-                                        <th>Id </th>
-                                        <th>Descrição </th>
-                                        <th>Ação </th>
-                                    </tr>
-                                </thead> 
-                                 <tbody>
-                                    @forelse($colunas as $coluna)
-                                    <tr>
-                                        <td>{{$coluna->id }}</td>
-                                        <td>{{$coluna->nome_coluna }}</td>
-                                        <td>        <button type="button" title="Editar" class="btn btn-primary" onclick="window.location='{{url('colunas/'.$tabela->id.'/edit')}}'">  
-                                            <img src="{{ asset('img/001-editar.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>
-
-                                       
-                                        </td>                                        
-                                   </tr>
-                                    @empty
-                                    @endforelse
-                                </tbody> 
-                            </table>
+                                            <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id </th>
+                                                    <th>Descrição </th>
+                                                    <th>Ação </th>
+                                                </tr>
+                                            </thead> 
+                                            <tbody>
+                                                @forelse($colunas as $coluna)
+                                                <tr>
+                                                    <td>{{$coluna->id }}</td>
+                                                    <td>{{$coluna->nome_coluna }}</td>
+                                                    <td>        <button type="button" title="Editar" class="btn btn-primary" onclick="window.location='{{url('colunas/'.$tabela->id.'/edit')}}'">  
+                                                        <img src="{{ asset('img/001-editar.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>                                       
+                                                    </td>                                        
+                                            </tr>
+                                                @empty
+                                                @endforelse
+                                            </tbody> 
+                                        </table>
 
                                     </div>
 

@@ -16,11 +16,11 @@
 
                             <div class="col-md-6">
                                 <select id="empresa" onchange="jsEmpresa(this.value)" class="form-control" name="empresa" required >
-                                    
+
                                     @foreach ($empresas as $empresa)
-                                    
+
                                         <option value="{{$empresa->id }}">{{ $empresa->nome }}</option>
-                                    
+
                                     @endforeach
                                 </select>
                             </div>
@@ -89,18 +89,15 @@
 
 <script>
     function jsEmpresa(id){
-
         var token = $('input[name="_token"]').val();
-
         $.ajax({
                 url: '/bti-user',
                 type: 'post',
                 data:{"_token":token,"empresa_id":id, "user_id":1},
                 success: function(result){
-                    
+
                 }
             });
-        
-    } 
+    }
 </script>
 

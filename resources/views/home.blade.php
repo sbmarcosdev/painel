@@ -58,16 +58,7 @@
                 </div>
             </div>
 
-            <div class="card mt-3">
-                <div class="card-header"><h4 class="tituloPrincipal">Produtos</h4></div>
-
-                <div class="card-body">  
-                            
-                    </div>
-                    <button title="Incluir Novo" class="btn btn-outline-secondary" onclick="window.location='{{url('produto/create')}}'">  
-                                           Incluir <img src="{{ asset('img/documentos.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>
-                </div>
-            </div>
+        
 
 </div>
 

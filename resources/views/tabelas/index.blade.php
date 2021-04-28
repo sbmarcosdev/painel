@@ -25,8 +25,10 @@
                                         <td>
                                         <button title="Visualizar Tabela" class="btn btn-outline-success btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id )}}'">  
                                         <img src="{{ asset('img/documentos.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
-                                        <button title="Editar Tabela" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id.'/edit')}}'">  
-                                        <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
+                                        @if( Auth::user()->admin == 'S' )
+                                            <button title="Editar Tabela" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id.'/edit')}}'">  
+                                            <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
+                                        @endif
                                         </td>                                        
                                    </tr>
                                     @empty
