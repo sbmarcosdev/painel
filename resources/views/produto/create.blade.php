@@ -17,19 +17,19 @@
                                 <div class="form-group mt-3">
                                 <div class="card p-4">
                                  <div class="input-group m-3">
-                                  
+
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Tipo</span>
                                         </div>
                                         <input type="text" name='tipo' class='form-control' required >
-                                       
+
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Descrição</span>
                                         </div>
-                                       
+
                                         <input type="text" name="descricao" class="form-control" required>
-                                     
-                                        
+
+
 
                                     </div>
 
@@ -38,25 +38,25 @@
                                             <span class="input-group-text">Cor Primária</span>
                                         </div>
                                         <input type="color"  name="cor" id="cor1" class='form-control' onchange="jsCorPrimaria()" />
-                                       
+
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Valor Unitário</span>
                                         </div>
-                                       
+
                                         <input type="number" min="0" max="9999" name="valor_unitario" class="form-control" required>
-                                     
+
                                         </div>
 
                                     </div>
 
-                                   
-                                    <button class=" btn btn-success" onclick="">
-                                        <img src="{{ asset('img/mais.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
-                                        Salvar </button>
-                                    <button type="button" class="btn btn-secondary" onclick="window.location = '{{url('home')}}'">
-                                        <img src="{{ asset('img/documentos.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
-                                        Voltar </button>
-
+                                    <div class="input-group m-2">
+                                        <button class=" btn btn-success m-2" onclick="">
+                                            <img src="{{ asset('img/mais.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
+                                            Salvar </button>
+                                        <button type="button" class="btn btn-secondary m-2" onclick="window.location = '{{url('produto')}}'">
+                                            <img src="{{ asset('img/documentos.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
+                                            Voltar </button>
+                                    </div>
                                 </div>
 
 

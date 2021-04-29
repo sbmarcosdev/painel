@@ -64,6 +64,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('produto') }}">  Produtos  </a>
+                            </li>
                         @endif
 
                             <li class="nav-item dropdown">

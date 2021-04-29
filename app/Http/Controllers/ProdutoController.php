@@ -14,6 +14,12 @@ class ProdutoController extends Controller
         $this->middleware('check.empr');
     }
 
+    public function index()
+    {
+        $produtos = Produto::all();
+        return view('produto.index', compact('produtos'));
+    }
+
     public function create()
     {
         return view('produto.create');
