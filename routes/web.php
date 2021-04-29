@@ -11,6 +11,7 @@ Route::post('/bti-user', 'BtiController@getEmpresa');
 Route::get('/login', 'BtiController@index')->name('login');
 
 Route::get('/', 'BtiController@index');
+Route::get('erro', 'BtiController@erro')->name('erro');
 
 Route::resource('produto', 'ProdutoController');
 Route::resource('tabelas', 'TabelaController');

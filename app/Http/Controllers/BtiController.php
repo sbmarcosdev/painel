@@ -42,6 +42,8 @@ class BtiController extends Controller
         return view('tabelas.relatorio', compact('empresa','faturas'));
     }
 
-
-
+    public function erro()
+    {
+          return view('erro');
+    }
 }

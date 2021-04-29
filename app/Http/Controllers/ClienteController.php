@@ -10,6 +10,7 @@ class ClienteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.empr');
     }
 
     public function create()

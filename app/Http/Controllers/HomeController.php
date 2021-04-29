@@ -14,13 +14,12 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.empr');
     }
 
     public function index()
     {
         if(Auth::user()->empresa_id){
-
-        session()->put(['empresa_id' => Auth::user()->empresa_id ]);
 
         $emp = session()->get('empresa_id');
 
