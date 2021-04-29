@@ -47,8 +47,6 @@ class UsuariosController extends Controller
 
         $user->delete();
 
-        $empresas = Empresa::all();
-
-        return view('usuarios.form', compact('user', 'empresas'));
+        return redirect('usuarios');
     }
 }
