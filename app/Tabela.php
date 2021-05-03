@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Tabela extends Model
 {
     protected $guarded = [''];
-    
+
     public function empresa()
     {
         return $this->hasOne(Empresa::class, 'id', 'empresa_id')->first();
+    }
+
+    public function ciclos()
+    {
+        return $this->hasOne(TabelaCiclo::class, 'tabela_id', 'id')->first();
     }
 
     public function colunas()

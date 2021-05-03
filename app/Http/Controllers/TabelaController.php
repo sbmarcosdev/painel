@@ -49,7 +49,7 @@ class TabelaController extends Controller
                         'descricao_tabela' => $request->descricao_tabela
                         ]);
 
-        // return redirect();
+        return redirect('tabelas');
     }
 
     public function edit($id)
