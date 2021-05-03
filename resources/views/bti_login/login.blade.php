@@ -87,7 +87,7 @@
         var email = $('#email').val();
 
         $.ajax({
-                url: '/bti-user',
+                url: "{{url('bti-user')}}",
                 type: 'post',
                 data:{"_token":token,"email":email},
                 success: function(result){
