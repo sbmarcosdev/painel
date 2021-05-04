@@ -19,7 +19,11 @@ class TabelaController extends Controller
 
     public function index()
     {
-        $tabelas = Tabela::all();
+        if (session()->get('isAdmin')){
+            $tabelas = Tabela::all();
+        }else{
+            $tabelas = Tabela::where('empresa_id', Auth::user()->empresa_id )->get();
+        }
 
         return view('tabelas.index', compact('tabelas'));
     }
@@ -35,11 +39,9 @@ class TabelaController extends Controller
 
     public function create()
     {
-        $emp = session()->get('empresa_id');
+        $empresas = Empresa::all();
 
-        $empresa = Empresa::find($emp);
-
-        return view('tabelas.create', compact('empresa'));
+        return view('tabelas.create', compact('empresas'));
     }
 
     public function store(Request $request)
@@ -59,5 +61,14 @@ class TabelaController extends Controller
         $colunas = TabelaColuna::where('tabela_id', $id)->get();
 
         return view('tabelas.frm', compact('tabela','colunas'));
+    }
+
+    public function destroy($tabela_id)
+    {
+        $tabela = Tabela::find($tabela_id);
+
+        $tabela->delete();
+
+        return redirect('tabelas');
     }
 }

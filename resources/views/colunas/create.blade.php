@@ -23,20 +23,20 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Campo</span>
                                         </div>
-                                       
+
                                         <input type="text" name="nome_coluna" class="form-control" required>
-                                     
+
                                     </div>
 
                                     <div class="input-group m-3">
-                                        <button class="btn btn-secondary m-1" onclick="history.back()">
+                                        <button type="button" class="btn btn-secondary m-1" onclick="history.back()">
                                             <img src="{{ asset('img/arrow-back.png') }}"  width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                                                 Voltar </button>
 
-                                        <button class=" btn btn-success  m-1" onclick="">
+                                        <button class="btn btn-success  m-1">
                                             <img src="{{asset('img/add-list.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
                                                 Salvar </button>
-                                          
+
                                     </div>
                                 </div>
 
@@ -54,11 +54,3 @@
 </div>
 @endsection
 
-@section('scripts')
-
-<script>
-    function jsCorPrimaria() {
-        $('#cor1').val($('#inputcolor').val());
-    }
-</script>
-@endsection

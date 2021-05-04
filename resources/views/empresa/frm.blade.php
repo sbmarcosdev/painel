@@ -9,47 +9,47 @@
                 <div class="card">
                     <div class="card-body" >
                         <div class="col-sm-12">
-                            <h4 class="tituloPrincipal">Produto</h4>
+                            <h4 class="tituloPrincipal">Empresa</h4>
 
-                            <form id="uploadForm" action="{{url('/produto/'.$produto->id)}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{url('empresa/'.$empresa->id)}}" method="POST" enctype="form-data">
                                 @csrf
                                 @method('patch')
                                 <div class="form-group mt-3">
                                 <div class="card p-4">
                                  <div class="input-group m-3">
-                                  
+
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Tipo</span>
+                                            <span class="input-group-text">Nome Fantasia</span>
                                         </div>
-                                        <input type="text" name='tipo' value="{{ $produto->tipo ?? '' }}" class='form-control' required >
-                                       
+                                        <input type="text" name='nome' value="{{ $empresa->nome ?? '' }}" class='form-control' required >
+
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Descrição</span>
+                                            <span class="input-group-text">Razão Social</span>
                                         </div>
-                                       
-                                        <input type="text" name="descricao" class="form-control" value="{{ $produto->descricao ?? '' }}" required >            
+
+                                        <input type="text" name="razao_social" class="form-control" value="{{ $empresa->razao_social ?? '' }}" required >
 
                                     </div>
 
                                     <div class="input-group m-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Cor Primária</span>
+                                            <span class="input-group-text">CNPJ</span>
                                         </div>
-                                        <input type="color" value="{{ $produto->cor ?? '' }}" name="cor" id="cor1" class='form-control' onchange="jsCorPrimaria()" />
-                                       
+                                        <input type="text" value="{{ $empresa->cnpj ?? '' }}" name="cnpj" class='form-control'>
+
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Valor Unitário</span>
+                                            <span class="input-group-text">Site</span>
                                         </div>
-                                       
-                                        <input type="number" min="0" max="9999" name="valor_unitario" class="form-control" value="{{ $produto->valor_unitario ?? '' }}" required>
-                                     
+
+                                        <input type="text" name="site" class="form-control" value="{{ $empresa->site ?? '' }}" required>
+
                                         </div>
 
                                     </div>
 
                                     <div class="input-group m-3">
 
-                                    <button type="button" class="btn btn-secondary m-2" onclick="window.location = '{{url('home')}}'">
+                                    <button type="button" class="btn btn-secondary m-2" onclick="window.location = '{{url('empresa')}}'">
                                         <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                                         Voltar </button>
 

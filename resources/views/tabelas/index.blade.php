@@ -12,7 +12,7 @@
                              <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Empresa</th>
                                         <th>Descrição </th>
                                         <th>Ação </th>
                                     </tr>
@@ -20,7 +20,7 @@
                                  <tbody>
                                     @forelse($tabelas as $tabela)
                                     <tr>
-                                        <td>{{$tabela->id }}</td>
+                                        <td>{{$tabela->empresa()->nome ?? '' }}</td>
                                         <td>{{$tabela->descricao_tabela }}</td>
                                         <td>
                                         <button title="Visualizar Tabela" class="btn btn-outline-success btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id )}}'">
@@ -37,13 +37,17 @@
                             </table>
                     </div>
 
-                    <button type="button" class="btn btn-outline-secondary m-2" onclick="history.back()">
-                                        <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
-                                        Voltar </button>
+                        <button type="button" class="btn btn-outline-secondary m-2" onclick="history.back()">
+                            <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
+                             Voltar
+                        </button>
 
-                    <button title="Nova Tabela" class="btn btn-outline-secondary" onclick="window.location='{{url('tabelas/create')}}'">
+                    @if( Auth::user()->admin == 'S' )
+                        <button title="Nova Tabela" class="btn btn-outline-secondary" onclick="window.location='{{url('tabelas/create')}}'">
                           <img src="{{ asset('img/mais.svg')  }}" width="15" data-toggle="tooltip" data-placement="bottom">
-                          Incluir  </button>
+                          Incluir
+                        </button>
+                    @endif
                 </div>
             </div>
 

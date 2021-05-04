@@ -37,11 +37,11 @@
                                             <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
                                             </form>
 
-                                            <form action="{{url('colunas/'.$coluna->id )}}" method="POST" onsubmit="return confirm('{{ trans('Confirma Exclusão?') }}');" style="display: inline-block;">
+                                            <form action="{{url('colunas/'.$coluna->id )}}" method="POST" onsubmit="return confirm('{{ trans('Confirma Exclusão desta Coluna?') }}');" style="display: inline-block;">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" title="Excluir">
-                                                    <img src="{{ asset('img/007-excluir.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom" title="Excluir">
+                                                    <img src="{{ asset('img/007-excluir.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom" title="Excluir Coluna">
                                                 </button>
                                             </form>
                                         </td>
@@ -59,9 +59,23 @@
                                         <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                                         Voltar </button>
 
+
+
                                     <button type="button" class=" btn btn-success m-2" onclick="window.location = '{{url('nova-coluna/'. $tabela->id )}}'">
                                         <img src="{{ asset('img/add-list.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Nova Coluna">
                                         Incluir Coluna </button>
+
+
+                                        <form action="{{ url('/tabelas/' . $tabela->id) }}" method="POST"
+                                           onsubmit="return confirm('Confirma Exclusão da Tabela?');" >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                            <button type="submit" class="btn btn-danger m-2" value="X" title="Excluir Tabela" >
+                                                <img src="{{ asset('img/007-excluir.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Excluir">
+                                                Excluir Tabela
+                                            </button>
+                                        </form>
 
                                 </div>
 

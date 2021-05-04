@@ -22,30 +22,28 @@
                                             <span class="input-group-text">Empresa</span>
                                         </div>
 
-                                        <input type="hidden" name='empresa_id' value='{{ $empresa->id }}' >
-
-                                        <input type="text" name='empresa' class='form-control' value='{{ $empresa->nome }}' readonly >
-
+                                        <select type="select" name='empresa_id' class='form-control'>
+                                          @foreach($empresas as $empresa)
+                                            <option id="empr{{ $empresa->id }}" value="{{ $empresa->id }}">{{ $empresa->nome }} </option>
+                                          @endforeach
+                                        </select>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Nome da Tabela</span>
                                         </div>
 
                                         <input type="text" name="descricao_tabela" class="form-control" required>
 
-
-
                                     </div>
 
                                     <div class="input-group m-3">
 
-                                        <button class="btn btn-secondary m-1" onclick="window.location = '{{url('tabelas')}}'">
+                                        <button type="button" class="btn btn-secondary m-1" onclick="window.location = '{{url('tabelas')}}'">
                                             <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                                             Voltar </button>
 
-                                        <button class=" btn btn-success  m-1" onclick="">
+                                        <button class="btn btn-success  m-1">
                                             <img src="{{ asset('img/add-list.png')}}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
                                                 Salvar </button>
-
                                     </div>
                                 </div>
 

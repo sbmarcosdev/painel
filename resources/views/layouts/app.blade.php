@@ -58,6 +58,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('usuarios') }}"> Usuários  </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('empresa') }}">  Empresas  </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">  -  </a>
+                            </li>
                         @endif
                         @if ( Auth::user()->empresa_id )
                             <li class="nav-item">
@@ -66,10 +72,6 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('produto') }}">  Produtos  </a>
                             </li>
                         @endif
 
