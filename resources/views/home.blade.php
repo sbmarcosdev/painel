@@ -13,10 +13,6 @@
                         </div>
                     @endif
 
-                    {{-- <h5>Empresa: {{  $empresa->nome }}</h5>
-
-                    <p>CNPJ: {{  $empresa->cnpj }}</p> --}}
-
                     <div class="table-responsive">
 
                              <table id="table" name="table" class="table table-bordered" style="font-size:1.9vh;">
@@ -35,14 +31,19 @@
                                      @foreach ( $results as $r )
                                     <tr>
                                         <td rowspan="2" class="align-middle">{{ $r['p']->tabela()->descricao_tabela  }}</td>
-                                        <td rowspan="2" class="align-middle">{{ $r['p']->data }}</td>
+                                        <td rowspan="2" class="align-middle">{{ Carbon\Carbon::parse($r['p']->data)->format('d/m/Y') }}</td>
                                         <td>{{ $r['p']->inicio }}</td>
                                         <td>{{ $r['p']->termino }}</td>
                                         <td>{{ $r['p']->ciclo }}</td>
                                         <td>{{ $r['p']->tempo_ultimo }}</td>
-                                        <td rowspan="2" class="align-middle">
-                                            <button title="Relatório" class="btn btn-primary" onclick="window.location='{{url('fatura')}}'">
-                                            <img src="{{ asset('img/grafico.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>
+                                        <td rowspan="2" class="align-middle text-center">
+                                            <button title="Visualizar Dados" class="btn btn-outline-success btn-sm" onclick="window.location='{{url('tabelas/'. $r['p']->tabela()->id )}}'">
+                                                <img src="{{ asset('img/documentos.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
+                                            @if( Auth::user()->admin == 'S' )
+                                                <button title="Editar Tabela" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('tabelas/'.$r['p']->tabela()->id.'/edit')}}'">
+                                                <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
+                                            @endif
+
                                         </td>
                                     </tr>
                                     <tr>

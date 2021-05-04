@@ -19,7 +19,7 @@
 
                                 <p> Colunas </p>
                                  <div class="input-group m-2">
-                                  
+
                                  <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
                                 <thead>
                                     <tr>
@@ -27,35 +27,35 @@
                                         <th>Descrição </th>
                                         <th>Ação </th>
                                     </tr>
-                                </thead> 
+                                </thead>
                                  <tbody>
                                     @forelse($colunas as $coluna)
                                     <tr>
                                         <td>{{$coluna->id }}</td>
                                         <td>{{$coluna->nome_coluna }}</td>
-                                        <td>        <button type="button" title="Editar Coluna" class="btn btn-outline-secondary btn-sm" onclick="window.location='{{url('colunas/'.$coluna->id.'/edit')}}'">  
+                                        <td>        <button type="button" title="Editar Coluna" class="btn btn-outline-secondary btn-sm" onclick="window.location='{{url('colunas/'.$coluna->id.'/edit')}}'">
                                             <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
                                             </form>
-                                            
+
                                             <form action="{{url('colunas/'.$coluna->id )}}" method="POST" onsubmit="return confirm('{{ trans('Confirma Exclusão?') }}');" style="display: inline-block;">
-                                                <input type="hidden" name="_method" value="DELETE">                                        
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" title="Excluir">
                                                     <img src="{{ asset('img/007-excluir.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom" title="Excluir">
                                                 </button>
                                             </form>
-                                        </td>                                        
+                                        </td>
                                    </tr>
                                     @empty
                                     @endforelse
-                                </tbody> 
+                                </tbody>
                             </table>
 
                                     </div>
 
                                     <div class="input-group m-3">
 
-                                    <button type="button" class="btn btn-secondary m-2" onclick="window.location = '{{url('tabelas')}}'">
+                                    <button type="button" class="btn btn-secondary m-2" onclick="history.back()">
                                         <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                                         Voltar </button>
 
@@ -64,7 +64,7 @@
                                         Incluir Coluna </button>
 
                                 </div>
-                          
+
                         </div>
                     </div>
                 </div>
