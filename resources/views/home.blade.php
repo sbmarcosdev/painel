@@ -19,39 +19,40 @@
 
                     <div class="table-responsive">
 
-                             <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
+                             <table id="table" name="table" class="table table-bordered" style="font-size:1.9vh;">
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        {{-- <th>E-Mail</th> --}}
                                         <th>Data</th>
                                         <th>Início</th>
                                         <th>Término</th>
                                         <th>Tempo ciclo</th>
-                                        <th>Tempo desde último ciclo (em minutos)</th>
+                                        <th>Tempo desde último ciclo</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
-
-
                                  <tbody>
-                                    @forelse($regs as $reg)
+                                     @foreach ( $results as $r )
                                     <tr>
-                                        <td>{{ $reg['nome'] }}</td>
-                                        {{-- <td>{{ $reg['email'] }}</td> --}}
-                                        <td>{{ $reg['data'] }}</td>
-                                        <td>{{ $reg['inicio'] }}</td>
-                                        <td>{{ $reg['termino'] }}</td>
-                                        <td>{{ $reg['ciclo'] }}</td>
-                                        <td>{{ $reg['diferenca'] }}</td>
-                                        <td>
+                                        <td rowspan="2" class="align-middle">{{ $r['p']->tabela()->descricao_tabela  }}</td>
+                                        <td rowspan="2" class="align-middle">{{ $r['p']->data }}</td>
+                                        <td>{{ $r['p']->inicio }}</td>
+                                        <td>{{ $r['p']->termino }}</td>
+                                        <td>{{ $r['p']->ciclo }}</td>
+                                        <td>{{ $r['p']->tempo_ultimo }}</td>
+                                        <td rowspan="2" class="align-middle">
                                             <button title="Relatório" class="btn btn-primary" onclick="window.location='{{url('fatura')}}'">
                                             <img src="{{ asset('img/grafico.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom"> </button>
-
                                         </td>
                                     </tr>
-                                    @empty
-                                    @endforelse
+                                    <tr>
+                                        <td>{{ $r['u']->inicio }}</td>
+                                        <td>{{ $r['u']->termino }}</td>
+                                        <td>{{ $r['u']->ciclo }}</td>
+                                        <td>{{ $r['u']->tempo_ultimo }}</td>
+                                    </tr>
+
+                                    @endforeach
                                 </tbody>
                             </table>
                     </div>

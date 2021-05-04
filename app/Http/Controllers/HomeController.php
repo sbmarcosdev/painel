@@ -24,29 +24,45 @@ class HomeController extends Controller
 
         if($empresa_id){
 
-            $tabela_id = 1;
+            $tabelas = TabelaCiclo::where('empresa_id', $empresa_id )->distinct()->select('tabela_id')->get();
 
-            $sql = "SELECT *
-                      FROM tabela_ciclos
-                     where tabela_id = $tabela_id
-                       and id < ( SELECT max(id)
-                                    FROM tabela_ciclos
-                                   where tabela_id = $tabela_id )
-                  order by id desc
-                     limit 1";
+            $results = array();
 
-            $regs = DB::select($sql);
+            foreach($tabelas as $tabela ){
 
-            foreach ($regs as $r){
-                $penultimo = $r;
-            };
+                $tabela_id = $tabela->tabela_id;
 
-            $ultimo = TabelaCiclo::where('empresa_id', $empresa_id )
-                                ->where('tabela_id', $tabela_id )
-                                ->latest('inicio')
-                                ->first();
+                $sql = "SELECT *
+                        FROM tabela_ciclos
+                        where tabela_id = $tabela_id
+                        and id < ( SELECT max(id)
+                                        FROM tabela_ciclos
+                                    where tabela_id = $tabela_id )
+                    order by id desc
+                        limit 1";
 
-             return view('home', compact('regs'));
+                $regs = DB::select($sql);
+
+
+
+                foreach ($regs as $r){
+                    $penultimo_id = $r->id;
+                };
+
+                $penultimo = TabelaCiclo::find( $penultimo_id );
+
+                $ultimo = TabelaCiclo::where('empresa_id', $empresa_id )
+                                    ->where('tabela_id', $tabela_id )
+                                    ->latest('inicio')
+                                    ->first();
+
+                array_push($results,  ['p' => $penultimo , 'u' => $ultimo ] );
+
+            }
+
+            // return $results;
+
+                return view('home', compact('results'));
             }
             else {
                     return view('erro');
