@@ -13,8 +13,10 @@ class CreateTabelaCiclosTable extends Migration
             $table->integer('empresa_id');
             $table->integer('tabela_id');
             $table->date('data')->nullable();
-            $table->dateTime('inicio')->nullable();
-            $table->dateTime('termino')->nullable();
+            $table->time('inicio')->nullable();
+            $table->time('termino')->nullable();
+            $table->time('ciclo')->nullable();
+            $table->time('tempo_ultimo')->nullable();
             $table->timestamps();
         });
     }
