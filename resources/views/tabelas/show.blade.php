@@ -27,7 +27,7 @@
                                     @forelse($regs as $reg)
                                     <tr>
                                         @forelse($colunas as $key => $coluna)
-                                         <td>{{ $reg['coluna_'.str_pad($key + 1, 2, '0', STR_PAD_LEFT) ] }}</td>
+                                         <td>{{ $reg[$key+1]  }}</td>
                                          @empty
                                         @endforelse
                                    </tr>
