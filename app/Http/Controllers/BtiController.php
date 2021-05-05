@@ -31,17 +31,6 @@ class BtiController extends Controller
         $user->update(['empresa_id' => $request->empresa_id]);
     }
 
-    public function report()
-    {
-        $emp = session()->get('empresa_id');
-
-        $empresa = Empresa::find($emp);
-
-        $faturas = Fatura::all();
-
-        return view('tabelas.relatorio', compact('empresa','faturas'));
-    }
-
     public function erro()
     {
           return view('erro');

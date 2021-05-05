@@ -56,9 +56,21 @@
                                     <button class=" btn btn-success m-2" onclick="">
                                         <img src="{{ asset('img/add-list.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
                                         Salvar </button>
+                                    </form>
+
+                                    <form action="{{ url('/empresa/' . $empresa->id) }}" method="POST"
+                                        onsubmit="return confirm('Confirma Exclusão da Empresa?');" >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                            <button type="submit" class="btn btn-danger m-2" value="X" title="Excluir Empresa" >
+                                                <img src="{{ asset('img/007-excluir.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Excluir">
+                                                Excluir Empresa
+                                            </button>
+                                    </form>
 
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>

@@ -45,14 +45,23 @@ class EmpresaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Empresa = Empresa::find($id);
+        $empresa = Empresa::find($id);
 
-        $Empresa->update([
+        $empresa->update([
                             'nome'=>$request->nome,
                             'razao_social'=>$request->razao_social,
                             'cnpj'=>$request->cnpj,
                             'site'=>$request->site
                         ]);
+
+        return redirect('empresa');
+    }
+
+    public function destroy($empresa_id)
+    {
+        $empresa = Empresa::find($empresa_id);
+
+        $empresa->delete();
 
         return redirect('empresa');
     }
