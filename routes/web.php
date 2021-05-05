@@ -15,7 +15,7 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('tabelas/{tabela_id}/edit', 'TabelaController@edit');
     Route::post('tabelas', 'TabelaController@store');
     Route::patch('tabelas', 'TabelaController@update');
-    Route::delete('tabelas', 'TabelaController@destroy');
+    Route::delete('tabelas/{tabela_id}', 'TabelaController@destroy');
 
     Route::resource('colunas', 'ColunasController');
     Route::resource('empresa', 'EmpresaController');
