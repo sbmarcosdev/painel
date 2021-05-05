@@ -25,7 +25,7 @@ class CheckEmprId
 
         $autorizado = session()->get('empresa_id');
 
-        if ( isset($autorizado) || $admin ) {
+        if ( isset($autorizado) ) {
 
             $partes = explode('/', $request->path() );
 

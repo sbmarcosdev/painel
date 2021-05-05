@@ -26,8 +26,8 @@
                             <td>{{ $user->empresa()->nome ?? '' }}</td>
                             <td>@if( $user->admin == 'S') Admin @else Padrão @endif</td>
                             <td>
-                                <button type="button" title="Editar" class="btn btn-primary" onclick="window.location='{{url('usuarios/'.$user->id.'/edit')}}'">
-                                    <img src="{{ asset('img/001-editar.svg') }}" width="15" data-toggle="tooltip" data-placement="bottom">
+                                <button type="button" title="Editar" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('usuarios/'.$user->id.'/edit')}}'">
+                                    <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom">
                                 </button>
                             </td>
                         </tr>

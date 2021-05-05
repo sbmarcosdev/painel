@@ -9,13 +9,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css" crossorigin="anonymous" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.js" crossorigin="anonymous"></script>
+
     <script src="{{ asset('js/sbmScripts.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -58,20 +65,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('usuarios') }}"> Usuários  </a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('empresa') }}">  Empresas  </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link">  -  </a>
-                            </li>
+
                         @endif
                         @if ( Auth::user()->empresa_id )
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('home') }}">  Dashboard  </a>
+                                <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('tabelas') }}">  Tabelas  </a>
+                                <a class="nav-link" href="{{ url('home') }}">  Dashboard  </a>
                             </li>
                         @endif
 
@@ -92,9 +98,6 @@
                                     </form>
                                 </div>
                             </li>
-
-
-
                         @endguest
                     </ul>
                 </div>

@@ -10,10 +10,11 @@ class isAdmin
     public function handle($request, Closure $next)
     {
         if (Auth::user()->admin == 'S') {
+
             return $next($request);
         }
         else {
-            return $next($request);
+            return redirect('erro');
         }
     }
 }

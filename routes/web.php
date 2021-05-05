@@ -3,21 +3,27 @@
 Auth::routes();
 
 Route::group(['middleware' => 'check.empr'], function () {
-    Route::get('tabelas', 'TabelaController@index')->name('tabelas');
-    Route::get('tabelas/{tabela_id}', 'TabelaController@show')->name('tabelas');
-    Route::get('home', 'HomeController@index')->name('home');
+
+    Route::get('home', 'HomeController@index');
+    Route::get('tabelas', 'TabelaController@index');
+    Route::get('tabelas/{tabela_id}', 'TabelaController@show');
 });
 
 Route::group(['middleware' => 'is.admin'], function () {
-    Route::get('fatura', 'BtiController@report')->name('fatura');
-    Route::resource('tabelas', 'TabelaController');
+
+    Route::get('nova-tabela/create', 'TabelaController@create');
+    Route::get('tabelas/{tabela_id}/edit', 'TabelaController@edit');
+    Route::post('tabelas', 'TabelaController@store');
+    Route::patch('tabelas', 'TabelaController@update');
+    Route::delete('tabelas', 'TabelaController@destroy');
+
     Route::resource('colunas', 'ColunasController');
     Route::resource('empresa', 'EmpresaController');
     Route::resource('usuarios', 'UsuariosController');
     Route::get('nova-coluna/{tabela_id}', 'ColunasController@novaColuna');
 });
 
-Route::get('login', 'BtiController@index')->name('login');
 Route::get('/', 'BtiController@index');
+Route::get('login', 'BtiController@index')->name('login');
 Route::post('bti-user', 'BtiController@getEmpresa');
 Route::get('erro', 'BtiController@erro')->name('erro');

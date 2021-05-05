@@ -23,12 +23,8 @@
                                         <td>{{$tabela->empresa()->nome ?? '' }}</td>
                                         <td>{{$tabela->descricao_tabela }}</td>
                                         <td>
-                                        <button title="Visualizar Tabela" class="btn btn-outline-success btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id )}}'">
-                                        <img src="{{ asset('img/documentos.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
-                                        @if( Auth::user()->admin == 'S' )
-                                            <button title="Editar Tabela" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('tabelas/'.$tabela->id.'/edit')}}'">
-                                            <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
-                                        @endif
+                                            <button title="Visualizar Tabela" class="btn btn-outline-success btn-sm" onclick="window.location='{{url('infos/'.$tabela->id )}}'">
+                                            <img src="{{ asset('img/documentos.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom"> </button>
                                         </td>
                                    </tr>
                                     @empty
@@ -37,17 +33,11 @@
                             </table>
                     </div>
 
-                        <button type="button" class="btn btn-secondary m-2" onclick="window.location='{{url('tabelas')}}'">
+                        <button type="button" class="btn btn-outline-secondary m-2" onclick="window.location='{{url('tabelas')}}'">
                             <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                              Voltar
                         </button>
 
-                    @if( Auth::user()->admin == 'S' )
-                        <button title="Nova Tabela" class="btn btn-success" onclick="window.location='{{url('nova-tabela/create')}}'">
-                          <img src="{{ asset('img/add-list.png')  }}" width="15" data-toggle="tooltip" data-placement="bottom">
-                          Incluir
-                        </button>
-                    @endif
                 </div>
             </div>
 

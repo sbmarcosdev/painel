@@ -24,7 +24,6 @@ class TabelaController extends Controller
         }else{
             $tabelas = Tabela::where('empresa_id', Auth::user()->empresa_id )->get();
         }
-
         return view('tabelas.index', compact('tabelas'));
     }
 
