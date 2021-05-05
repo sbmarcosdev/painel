@@ -25,7 +25,17 @@ class CreateTabelaDadosTable extends Migration
             $table->string('coluna_07')->nullable();
             $table->string('coluna_08')->nullable();
             $table->string('coluna_09')->nullable();
-            $table->string('coluna_10')->nullable();   
+            $table->string('coluna_10')->nullable();
+            $table->string('coluna_11')->nullable();
+            $table->string('coluna_12')->nullable();
+            $table->string('coluna_13')->nullable();
+            $table->string('coluna_14')->nullable();
+            $table->string('coluna_15')->nullable();
+            $table->string('coluna_16')->nullable();
+            $table->string('coluna_17')->nullable();
+            $table->string('coluna_18')->nullable();
+            $table->string('coluna_19')->nullable();
+            $table->string('coluna_20')->nullable();
             $table->timestamps();
         });
     }

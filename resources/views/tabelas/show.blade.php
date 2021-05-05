@@ -26,10 +26,10 @@
                                  <tbody>
                                     @forelse($regs as $reg)
                                     <tr>
-                                        <td>{{ $reg->coluna_01 }}</td>
-                                        <td>{{ $reg->coluna_02 }}</td>
-                                        <td>{{ $reg->coluna_03 }}</td>
-                                        <td>{{ $reg->coluna_04 }}</td>
+                                        @forelse($colunas as $key => $coluna)
+                                         <td>{{ $reg['coluna_'.str_pad($key + 1, 2, '0', STR_PAD_LEFT) ] }}</td>
+                                         @empty
+                                        @endforelse
                                    </tr>
                                     @empty
                                     @endforelse
@@ -38,7 +38,8 @@
                     </div>
                     <button type="button" class="btn btn-secondary m-2" onclick="history.back()">
                                         <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
-                                        Voltar </button>
+                                        Voltar
+                                    </button>
                 </div>
             </div>
 
