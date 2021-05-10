@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css" crossorigin="anonymous" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.js" crossorigin="anonymous"></script>
 
-    <script src="{{ asset('js/sbmScripts.js') }}" defer></script>
+    <script src="{{ asset('js/sbmScripts.js') }}" async></script>
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Fonts -->

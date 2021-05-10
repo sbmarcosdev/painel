@@ -1,13 +1,38 @@
-if ($('#admin').val() == 'S') {
-    $('#op2').prop("selected", true);
-}
+<div class="card">
+    <div class="card-header">
+        <h5>{{ $tabelas->descricao_tabela ?? '' }}</h5>
+    </div>
 
-$('#empr' + $('#empresa_id').val()).prop("selected", true);
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tabAjax{{ $tabelas->id }}" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
+                <thead>
+                    <tr>
+                        @forelse($colunas as $coluna)
+                            <th>{{ $coluna->nome_coluna }} </th>
+                        @empty
+                        @endforelse
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($regs as $reg)
+                        <tr>
+                            @forelse($colunas as $key => $coluna)
+                                <td>{{ $reg[$key + 1] }}</td>
+                            @empty
+                            @endforelse
+                        </tr>
+                    @empty
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
 
 $(document).ready(function () {
-    $('#showtable').DataTable({
-        dom: 'Bfrtip',
-        buttons: ['csvHtml5'],
+    $('#tabAjax'+{{ $tabelas->id }}).DataTable({
         responsive: true,
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -41,25 +66,4 @@ $(document).ready(function () {
         }
     })
 })
-
-function jsShowTab(empr) {
-    $.ajax({
-        url: 'tabs-empresa/' + empr,
-        type: "get",
-        dataType: 'json',
-        success: function (arrayTabelas) {
-            arrayTabelas.forEach(jsShowItem);
-        }
-    })
-}
-
-function jsShowItem(item) {
-    local = 'tab-ajax/' + item;
-    $.ajax({
-        url: local,
-        type: "get",
-        success: function (response) {
-            $('#tb' + item).html(response);
-        }
-    })
-}
+</script>
