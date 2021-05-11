@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img src="{{ asset('img/logo_bti.png') }}" width="82px" heigth="54">
                     @guest Painel de Integrações @else {{ App\Empresa::find(Auth::user()->empresa_id)->nome ?? '' }} @endguest
                     {{-- {{ config('app.name', 'Laravel') }} --}}
