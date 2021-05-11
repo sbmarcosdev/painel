@@ -9,12 +9,6 @@
                 </div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
                     <div class="table-responsive">
                         <table id="table" name="table" class="table table-bordered" style="font-size:1.9vh;">
                             <thead>
@@ -57,7 +51,7 @@
                                         <td>{{ $r['u']->inicio }}</td>
                                         <td>{{ $r['u']->termino }}</td>
                                         <td>{{ $r['u']->ciclo }}</td>
-                                        <td>{{ $r['u']->tempo_ultimo }}  </td>
+                                        <td>{{ $r['u']->tempo_ultimo }} </td>
                                     </tr>
 
                                 @endforeach
@@ -71,7 +65,43 @@
         @foreach ($results as $r)
             <section id="tb{{ $r['p']->tabela()->id }}" class="p-1"></section>
         @endforeach
+
+        <div class="p-1">
+            <div class="card">
+                <div class="card-header">
+                    <h5> Log ERP Inclusão </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <p> Últimos Erros </p>
+                        <table id="table" name="table" class="table table-bordered" style="font-size:1.9vh;">
+                            <thead>
+                                <tr>
+                                    <th>COD Chave</th>
+                                    <th>Data Hora</th>
+                                    <th>Mensagem 1</th>
+                                    <th>Mensagem 2</th>
+                                    <th>Mensagem 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($logs as $log)
+                                    <tr>
+                                        <td>{{ $log->COD_chave }}</td>
+                                        <td>{{ $log->dtHora }} </td>
+                                        <td>{{ $log->mensagem1 }}</td>
+                                        <td>{{ $log->mensagem2 }}</td>
+                                        <td>{{ $log->mensagem3 }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <body onload="jsShowTab( {{ Auth::user()->empresa_id }} )">
     </body>
