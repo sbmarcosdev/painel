@@ -32,6 +32,9 @@
 <script>
 
 $(document).ready(function () {
+
+
+
     $('#tabAjax'+{{ $tabelas->id }}).DataTable({
         responsive: true,
         "language": {
@@ -65,5 +68,7 @@ $(document).ready(function () {
             }
         }
     })
+
+
 })
 </script>
