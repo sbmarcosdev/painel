@@ -39,7 +39,7 @@
                                                 <img src="{{ asset('img/documentos.svg') }}" width="12"
                                                     data-toggle="tooltip" data-placement="bottom"> </button>
                                             @if (Auth::user()->admin == 'S')
-                                                <button title="Editar Tabela" class="btn btn-outline-primary btn-sm"
+                                                <button title="Editar Tabela" class="btn btn-outline-secondary btn-sm"
                                                     onclick="window.location='{{ url('tabelas/' . $r['p']->tabela()->id . '/edit') }}'">
                                                     <img src="{{ asset('img/001-editar.svg') }}" width="12"
                                                         data-toggle="tooltip" data-placement="bottom"> </button>

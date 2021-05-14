@@ -16,7 +16,7 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('nova-tabela/create', 'TabelaController@create');
     Route::get('tabelas/{tabela_id}/edit', 'TabelaController@edit');
     Route::post('tabelas', 'TabelaController@store');
-    Route::patch('tabelas', 'TabelaController@update');
+    Route::patch('tabelas/{tabela_id}', 'TabelaController@update');
     Route::delete('tabelas/{tabela_id}', 'TabelaController@destroy');
 
     Route::resource('colunas', 'ColunasController');

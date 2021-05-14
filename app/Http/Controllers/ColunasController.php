@@ -28,7 +28,9 @@ class ColunasController extends Controller
 
         $tabela = Tabela::find($coluna->tabela_id);
 
-        return view('colunas.frmcolunas', compact('tabela','coluna'));
+        $ultima_coluna =  TabelaColuna::where('tabela_id', $tabela->id )->max('id');
+
+        return view('colunas.frmcolunas', compact('tabela','coluna','ultima_coluna'));
     }
 
     public function update(Request $request, $id)

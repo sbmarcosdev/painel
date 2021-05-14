@@ -53,6 +53,14 @@ class TabelaController extends Controller
         return redirect('tabelas');
     }
 
+    public function update(Request $request, $tabela_id)
+    {
+        $tabela = Tabela::find($tabela_id);
+
+        $tabela->update(['descricao_tabela' => $request->descricao_tabela]);
+
+    }
+
     public function edit($id)
     {
         $tabela = Tabela::find($id);

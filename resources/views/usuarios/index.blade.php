@@ -3,12 +3,16 @@
 @section('content')
 
 <div class="container">
-    <div class="container espacamento">
-        <h4 class="tituloPrincipal">Usuários</h4>
-        <div class="form-group mt-3">
-            <div class="card p-3">
-                <div class="input-group m-3">
-                    <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;width:97%">
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="tituloPrincipal">Usuários</h5>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                    <table id="table" name="table" class="table table-striped table-bordered" style="font-size:1.9vh">
                     <thead>
                         <tr>
                             <th>Id </th>
@@ -26,7 +30,7 @@
                             <td>{{ $user->empresa()->nome ?? '' }}</td>
                             <td>@if( $user->admin == 'S') Admin @else Padrão @endif</td>
                             <td>
-                                <button type="button" title="Editar" class="btn btn-outline-primary btn-sm" onclick="window.location='{{url('usuarios/'.$user->id.'/edit')}}'">
+                                <button type="button" title="Editar" class="btn btn-outline-secondary btn-sm" onclick="window.location='{{url('usuarios/'.$user->id.'/edit')}}'">
                                     <img src="{{ asset('img/001-editar.svg') }}" width="12" data-toggle="tooltip" data-placement="bottom">
                                 </button>
                             </td>
@@ -37,8 +41,7 @@
                 </table>
             </div>
 
-            <div class="input-group m-2">
-                <button type="button" class="btn btn-secondary m-2" onclick="window.location = '{{url('home')}}'">
+                <button type="button" class="btn btn-outline-secondary m-2" onclick="window.location = '{{url('home')}}'">
                     <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Voltar">
                     Voltar
                 </button>
@@ -47,8 +50,9 @@
                     <img src="{{ asset('img/add-list.png') }}" width="15" data-toggle="tooltip" data-placement="bottom" title="Salvar">
                     Incluir Usuário
                 </button> --}}
-            </div>
+
         </div>
     </div>
 </div>
+
 @endsection
