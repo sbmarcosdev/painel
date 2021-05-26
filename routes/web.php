@@ -12,7 +12,7 @@ Route::group(['middleware' => 'check.empr'], function () {
 });
 
 Route::group(['middleware' => 'is.admin'], function () {
-
+    Route::get('home/{empresa_id}', 'HomeController@show');
     Route::get('nova-tabela/create', 'TabelaController@create');
     Route::get('tabelas/{tabela_id}/edit', 'TabelaController@edit');
     Route::post('tabelas', 'TabelaController@store');

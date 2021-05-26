@@ -82,13 +82,28 @@
                                 <a class="nav-link" href="{{ url('tabelas') }}"> Tabelas </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('home') }}"> Dashboard </a>
-                            </li>
+                            @if (Auth::user()->admin == 'S')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle btn-outline-success" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Dashboard
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @foreach ( App\Empresa::where('id', '>', 1 )->get() as $empresa)
+                                            <a class="dropdown-item" href="{{ url('home/'.$empresa->id) }}" >{{ $empresa->nome }} </a>
+                                        @endforeach
+                                    </div>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('home') }}"> Dashboard </a>
+                                </li>
+                            @endif
                         @endif
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle btn-outline-success" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>

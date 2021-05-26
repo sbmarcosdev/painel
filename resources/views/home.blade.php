@@ -5,7 +5,7 @@
         <div class="p-1">
             <div class="card">
                 <div class="card-header">
-                    <h5>Controle de Integrações</h5>
+                    <h5>Controle de Integrações {{ $empresa->nome ?? '' }} </h5>
                 </div>
 
                 <div class="card-body">
@@ -69,7 +69,7 @@
         <div class="p-1">
             <div class="card">
                 <div class="card-header">
-                    <h5> Log ERP Inclusão </h5>
+                    <h5> Log ERP Inclusão {{ $empresa->nome ?? '' }} </h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

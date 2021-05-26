@@ -69,5 +69,52 @@ class HomeController extends Controller
             }
     }
 
+    public function show($empresa_id)
+    {
+        if($empresa_id){
 
+            $empresa = Empresa::find($empresa_id);
+
+            $logs = Log::where('empresa_id', $empresa_id )->orderBy('dtHora', 'desc')->get();
+
+            $tabelas = TabelaCiclo::where('empresa_id', $empresa_id )->distinct()->select('tabela_id')->get();
+
+            $results = array();
+
+            foreach($tabelas as $tabela ){
+
+                $tabela_id = $tabela->tabela_id;
+
+                $sql = "SELECT *
+                        FROM tabela_ciclos
+                        where tabela_id = $tabela_id
+                        and id < ( SELECT max(id)
+                                        FROM tabela_ciclos
+                                    where tabela_id = $tabela_id )
+                    order by id desc
+                        limit 1";
+
+                $regs = DB::select($sql);
+
+                foreach ($regs as $r){
+                    $penultimo_id = $r->id;
+                };
+
+                $penultimo = TabelaCiclo::find( $penultimo_id );
+
+                $ultimo = TabelaCiclo::where('empresa_id', $empresa_id )
+                                    ->where('tabela_id', $tabela_id )
+                                    ->latest('inicio')
+                                    ->first();
+
+                array_push($results,  ['p' => $penultimo , 'u' => $ultimo ] );
+
+            }
+
+                return view('home', compact('results', 'logs','empresa'));
+            }
+            else {
+                    return view('erro');
+            }
+    }
 }
