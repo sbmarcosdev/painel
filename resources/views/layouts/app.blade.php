@@ -90,7 +90,8 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        @foreach ( App\Empresa::where('id', '>', 1 )->get() as $empresa)
+                                        {{-- @foreach ( App\Empresa::where('id', '>', 1 )->get() as $empresa) --}}
+                                        @foreach ( App\Empresa::all() as $empresa)
                                             <a class="dropdown-item" href="{{ url('home/'.$empresa->id) }}" >{{ $empresa->nome }} </a>
                                         @endforeach
                                     </div>
