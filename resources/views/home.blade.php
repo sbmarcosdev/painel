@@ -105,7 +105,7 @@
     </div>
 
 
-    <body onload="jsShowTab( {{ Auth::user()->empresa_id }} )">
+    <body onload="jsShowTab( {{ $empresa->id }} )">
     </body>
 
     <script>

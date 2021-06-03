@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 function jsShowTab(empr) {
     $.ajax({
-        url: 'tabs-empresa/' + empr,
+        url: '/tabs-empresa/' + empr,
         type: "get",
         dataType: 'json',
         success: function (arrayTabelas) {
@@ -54,7 +54,7 @@ function jsShowTab(empr) {
 }
 
 function jsShowItem(item) {
-    local = 'tab-ajax/' + item;
+    local = '/tab-ajax/' + item;
     $.ajax({
         url: local,
         type: "get",

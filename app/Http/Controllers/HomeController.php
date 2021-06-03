@@ -25,6 +25,8 @@ class HomeController extends Controller
 
         if($empresa_id){
 
+            $empresa = Empresa::find($empresa_id);
+
             $logs = Log::where('empresa_id', $empresa_id )->orderBy('dtHora', 'desc')->get();
 
             $tabelas = TabelaCiclo::where('empresa_id', $empresa_id )->distinct()->select('tabela_id')->get();
@@ -61,7 +63,7 @@ class HomeController extends Controller
 
             }
 
-                return view('home', compact('results', 'logs'));
+                return view('home', compact('results', 'logs', 'empresa'));
             }
             else {
                     return view('erro');
