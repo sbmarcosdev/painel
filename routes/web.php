@@ -23,6 +23,9 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::resource('empresa', 'EmpresaController');
     Route::resource('usuarios', 'UsuariosController');
     Route::get('nova-coluna/{tabela_id}', 'ColunasController@novaColuna');
+
+    Route::post('colunas/reorder', 'ColunasController@reorder')->name('admin.colunas.reorder');
+
 });
 
 Route::get('tabs-empresa/{empresa_id}', 'TabAjaxController@index');

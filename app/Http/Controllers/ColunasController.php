@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Tabela;
 use App\TabelaColuna;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ColunasController extends Controller
@@ -28,7 +30,7 @@ class ColunasController extends Controller
 
         $tabela = Tabela::find($coluna->tabela_id);
 
-        $ultima_coluna =  TabelaColuna::where('tabela_id', $tabela->id )->max('id');
+        $ultima_coluna =  TabelaColuna::where('tabela_id', $tabela->id )->max('ordem');
 
         return view('colunas.frmcolunas', compact('tabela','coluna','ultima_coluna'));
     }
@@ -44,9 +46,19 @@ class ColunasController extends Controller
 
     public function store(Request $request)
     {
+
+        $coluna = TabelaColuna::where('tabela_id', $request->tabela_id)
+                                     ->orderBy('ordem', 'desc')
+                                     ->first();
+        if ($coluna)
+            $ultima_coluna = $coluna->ordem + 1;
+         else
+            $ultima_coluna = 1;
+
         $coluna = TabelaColuna::create([
                                          'tabela_id'=> $request->tabela_id,
-                                         'nome_coluna' => $request->nome_coluna
+                                         'nome_coluna' => $request->nome_coluna,
+                                         'ordem' =>  $ultima_coluna
                                        ]);
 
         return redirect('tabelas/'.$coluna->tabela_id . '/edit');
@@ -61,5 +73,32 @@ class ColunasController extends Controller
         $coluna->delete();
 
         return redirect('tabelas/'.$tabela_id . '/edit');
+    }
+
+    public function reorder(Request $request)
+    {
+
+        $request->validate([
+            'ids'         => 'required|array',
+            'ids.*'       => 'integer',
+            'category_id' => 'required|integer|exists:tabelas,id',
+        ]);
+
+        foreach ($request->ids as $index => $id) {
+
+            DB::table('tabela_colunas')
+                ->where('id', $id)
+                ->where('tabela_id', $request->category_id )
+                ->update([
+                            'ordem' => $index + 1,
+                            'tabela_id' => $request->category_id
+                         ]);
+        }
+
+         $positions = Tabela::find($request->category_id)
+             ->ordens()
+             ->pluck('ordem', 'id');
+
+        return response(compact('positions'), Response::HTTP_OK);
     }
 }

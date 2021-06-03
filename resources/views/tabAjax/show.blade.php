@@ -4,7 +4,7 @@
     </div>
 
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive p-2">
             <table id="tabAjax{{ $tabelas->id }}" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
                 <thead>
                     <tr>

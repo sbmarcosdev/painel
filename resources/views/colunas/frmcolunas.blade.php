@@ -33,7 +33,7 @@
                             Salvar </button>
 
                 </form>
-                @if( $coluna->id == $ultima_coluna)
+                @if( $coluna->ordem == $ultima_coluna)
                 <form action="{{ url('/colunas/' . $coluna->id) }}" method="POST"
                     onsubmit="return confirm('Confirma Exclusão da Coluna?');">
                     <input type="hidden" name="_method" value="DELETE">

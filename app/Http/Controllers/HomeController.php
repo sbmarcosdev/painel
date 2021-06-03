@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Log;
+use App\Tabela;
 use App\Empresa;
-use App\Produto;
-
 use Carbon\Carbon;
 use App\TabelaCiclo;
 use Illuminate\Http\Request;
@@ -109,7 +108,7 @@ class HomeController extends Controller
 
                 array_push($results,  ['p' => $penultimo , 'u' => $ultimo ] );
 
-            }
+                }
 
                 return view('home', compact('results', 'logs','empresa'));
             }

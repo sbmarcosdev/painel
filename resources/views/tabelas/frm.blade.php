@@ -29,14 +29,18 @@
                             <tr>
                                 <th>Id </th>
                                 <th>Descrição </th>
+                                <th>Ordem </th>
                                 <th>Ação </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-id="{{ $tabela->id }}" class="sortable">
                             @forelse($colunas as $coluna)
-                                <tr>
+                                <tr data-id="{{ $coluna->id ?? '' }}" class="pergunta" title="Arraste para ordenar">
+
                                     <td>{{ $coluna->id }}</td>
                                     <td>{{ $coluna->nome_coluna }}</td>
+                                    <td class="position"><a>{{ $coluna->ordem ?? '' }}</a></td>
+
                                     <td> <button type="button" title="Editar Coluna"
                                             class="btn btn-outline-secondary btn-sm"
                                             onclick="window.location='{{ url('colunas/' . $coluna->id . '/edit') }}'">
@@ -82,17 +86,70 @@
     </div>
 </div>
 <script>
-    function jsSaveTabela(){
+function jsSaveTabela(){
 
-     var token = $('input[name="_token"]').val();
-     var descricao_tabela = $('#descricao_tabela').val();
+    var token = $('input[name="_token"]').val();
+    var descricao_tabela = $('#descricao_tabela').val();
 
      $.ajax({
              url: "{{ url('/tabelas/' . $tabela->id) }}",
              type: 'patch',
              data:{"_token":token,"descricao_tabela":descricao_tabela}
          });
+}
 
- }
- </script>
+function sendReorderPerguntasRequest($category) {
+
+var _token = $('input[name="_token"]').val();
+
+var items = $category.sortable('toArray', {
+    attribute: 'data-id'
+});
+var ids = $.grep(items, (item) => item !== "");
+
+if ($category.find('tr.pergunta').length) {
+    $category.find('.empty-message').hide();
+}
+$category.find('.category-name').text($category.find('tr:first td').text());
+
+$.post("{{ route('admin.colunas.reorder') }}", {
+        _token,
+        ids,
+        category_id: $category.data('id')
+    })
+    .done(function(response) {
+        $category.children('tr.pergunta').each(function(index, pergunta) {
+            $(pergunta).children('.position').text(response.positions[$(pergunta).data('id')])
+        });
+    })
+    .fail(function(response) {
+        alert('Error occured while sending reorder request');
+        location.reload();
+    });
+}
+
+$(document).ready(function() {
+var $categories = $('table');
+var $perguntas = $('.sortable');
+
+$perguntas.sortable({
+    connectWith: '.sortable',
+    items: 'tr.pergunta',
+    stop: (event, ui) => {
+        sendReorderPerguntasRequest($(ui.item).parent());
+
+        if ($(event.target).data('id') != $(ui.item).parent().data('id')) {
+            if ($(event.target).find('tr.pergunta').length) {
+                sendReorderPerguntasRequest($(event.target));
+                console.log($(event.target));
+            } else {
+                $(event.target).find('.empty-message').show();
+            }
+        }
+    }
+});
+$('table, .sortable').disableSelection();
+});
+
+</script>
 @endsection

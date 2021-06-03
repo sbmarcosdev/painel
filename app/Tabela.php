@@ -18,6 +18,11 @@ class Tabela extends Model
         return $this->hasOne(TabelaCiclo::class, 'tabela_id', 'id')->first();
     }
 
+    public function ordens()
+    {
+         return $this->hasMany(TabelaColuna::class);
+    }
+
     public function colunas()
     {
         return $this->hasMany(TabelaColuna::class, 'id', 'tabela_id')->get();

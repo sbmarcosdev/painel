@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive p-2">
                         <table id="table" name="table" class="table table-bordered" style="font-size:1.9vh;">
                             <thead>
                                 <tr>
@@ -23,9 +23,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                             @isset($results)
                                 @foreach ($results as $r)
                                     <tr>
-                                        <td rowspan="2" class="align-middle">{{ $r['p']->tabela()->descricao_tabela }}
+                                        <td rowspan="2" class="align-middle">{{ $r['p']->tabela()->descricao_tabela ?? ''}}
                                         </td>
                                         <td rowspan="2" class="align-middle">
                                             {{ Carbon\Carbon::parse($r['p']->data)->format('d/m/Y') }}</td>
@@ -35,7 +36,7 @@
                                         <td>{{ $r['p']->tempo_ultimo }}</td>
                                         <td rowspan="2" class="align-middle text-center">
                                             <button title="Visualizar Dados" class="btn btn-outline-success btn-sm"
-                                                onclick="window.location='{{ url('tabelas/' . $r['p']->tabela()->id) }}'">
+                                                onclick="window.location='{{ url('tabelas/' . $r['p']->tabela()->id ?? '') }}'">
                                                 <img src="{{ asset('img/documentos.svg') }}" width="12"
                                                     data-toggle="tooltip" data-placement="bottom"> </button>
                                             @if (Auth::user()->admin == 'S')
@@ -55,6 +56,7 @@
                                     </tr>
 
                                 @endforeach
+                            @endisset
                             </tbody>
                         </table>
                     </div>
@@ -67,12 +69,12 @@
         @endforeach
 
         <div class="p-1">
-            <div class="card">
+            <div class="card ">
                 <div class="card-header">
                     <h5> Log ERP Inclusão {{ $empresa->nome ?? '' }} </h5>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive p-2">
                         <p> Últimos Erros </p>
                         <table id="tableLogs" name="tableLogs" class="table table-bordered" style="font-size:1.9vh;">
                             <thead>

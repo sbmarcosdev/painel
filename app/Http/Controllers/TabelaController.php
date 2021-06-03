@@ -30,7 +30,7 @@ class TabelaController extends Controller
     public function show($id)
     {
         $tabelas = Tabela::find($id);
-        $colunas = TabelaColuna::where('tabela_id', $tabelas->id)->get();
+        $colunas = TabelaColuna::where('tabela_id', $tabelas->id)->orderBy('ordem')->get();
         $regs = TabelaDado::where('tabela_id', $tabelas->id)->get();
 
         return view('tabelas.show', compact('tabelas','colunas','regs'));
@@ -65,9 +65,11 @@ class TabelaController extends Controller
     {
         $tabela = Tabela::find($id);
 
-        $colunas = TabelaColuna::where('tabela_id', $id)->get();
+        $colunas = TabelaColuna::where('tabela_id', $id)->orderBy('ordem')->get();
 
         return view('tabelas.frm', compact('tabela','colunas'));
+
+        // return view('tabelas.list', compact('tabela','colunas'));
     }
 
     public function destroy($tabela_id)

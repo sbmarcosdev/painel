@@ -6,10 +6,10 @@
             <div class="card">
                 <div class="card-header"><h5 class="tituloPrincipal">{{  $tabelas->descricao_tabela ?? '' }}</h5></div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
+                <div class="card-body m-2 p-2">
+                    <div class="table-responsive m-2 p-2">
 
-                             <table id="showtable" name="table" class="table table-striped table-bordered" style="font-size:1.9vh;">
+                             <table id="showtable" name="table" class="table table-striped table-bordered" style="font-size:0.8em;">
                                 <thead>
                                     <tr>
                                     @forelse($colunas as $coluna)
