@@ -42,7 +42,7 @@
                 </div>
 
                 <button type="button" class="btn btn-outline-secondary m-2"
-                    onclick="window.location='{{ url('tabelas') }}'">
+                    onclick="window.location='{{ url('home') }}'">
                     <img src="{{ asset('img/arrow-back.png') }}" width="15" data-toggle="tooltip" data-placement="bottom"
                         title="Voltar">
                     Voltar
