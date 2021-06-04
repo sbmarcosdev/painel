@@ -20,7 +20,7 @@ class TabelaController extends Controller
     public function index()
     {
         if (session()->get('isAdmin')){
-            $tabelas = Tabela::all()->orderBy('empresa_id');
+            $tabelas = Tabela::orderBy('empresa_id')->get();
         }else{
             $tabelas = Tabela::where('empresa_id', Auth::user()->empresa_id )->get();
         }
