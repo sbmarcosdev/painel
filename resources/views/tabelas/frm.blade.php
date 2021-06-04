@@ -3,7 +3,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5>Tabela {{ $tabela->descricao_tabela }} </h5>
+            <h5> {{ $tabela->empresa()->nome }} - {{ $tabela->descricao_tabela }} </h5>
         </div>
 
             <form action="#" method="POST">
@@ -19,6 +19,7 @@
                             <span class="input-group-text">Nome da Tabela</span>
                         </div>
                         <input type="text" id='descricao_tabela' value="{{ $tabela->descricao_tabela ?? '' }}" onchange="jsSaveTabela()" class='form-control' required>
+                        <span class="input-group-text">Ok</span>
                     </div>
 
 
