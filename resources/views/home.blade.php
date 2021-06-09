@@ -23,7 +23,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             @isset($results)
+
                                 @foreach ($results as $r)
                                     <tr>
                                         <td rowspan="2" class="align-middle">{{ $r['p']->tabela()->descricao_tabela ?? ''}}
@@ -56,7 +56,6 @@
                                     </tr>
 
                                 @endforeach
-                            @endisset
                             </tbody>
                         </table>
                     </div>
@@ -65,7 +64,7 @@
         </div>
 
         @foreach ($results as $r)
-            <section id="tb{{ $r['p']->tabela()->id }}" class="p-1"></section>
+             <section id="tb{{ $r['p']->tabela()->id }}" class="p-1"></section>
         @endforeach
 
         <div class="p-1">

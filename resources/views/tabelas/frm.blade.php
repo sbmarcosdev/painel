@@ -19,7 +19,7 @@
                             <span class="input-group-text">Nome da Tabela</span>
                         </div>
                         <input type="text" id='descricao_tabela' value="{{ $tabela->descricao_tabela ?? '' }}" onchange="jsSaveTabela()" class='form-control' required>
-                        <span class="input-group-text">Ok</span>
+                        <span id="ok" class="input-group-text">OK</span>
                     </div>
 
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Fatura;
 use App\Empresa;
-use App\User;
+use App\Mail\bti;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BtiController extends Controller
 {
@@ -34,5 +36,14 @@ class BtiController extends Controller
     public function erro()
     {
           return view('erro');
+    }
+
+    public function mail()
+    {
+        $id = 1;
+        $user = User::where('id', $id)->first();
+
+        // return new bti($user);
+        Mail::to($user)->send(new bti($user));
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Mail\bti;
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 
 Route::group(['middleware' => 'check.empr'], function () {
@@ -33,3 +36,5 @@ Route::get('/', 'BtiController@index');
 Route::get('login', 'BtiController@index')->name('login');
 Route::post('bti-user', 'BtiController@getEmpresa');
 Route::get('erro', 'BtiController@erro')->name('erro');
+
+Route::get('mail', 'BtiController@mail');
