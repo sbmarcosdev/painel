@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('msg_erros')
 
 @section('content')
     <div class="container">

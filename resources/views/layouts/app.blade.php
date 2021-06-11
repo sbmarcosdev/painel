@@ -79,6 +79,11 @@
 
                         @endif
                         @if (Auth::user()->empresa_id)
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('abrir-chamado') }}"> Abrir Chamado </a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('tabelas') }}"> Tabelas </a>
                             </li>

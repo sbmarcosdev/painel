@@ -7,7 +7,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'check.empr'], function () {
 
-    Route::get('home', 'HomeController@index');
+    Route::get('home', 'HomeController@index')->name('home');
     Route::get('tabelas', 'TabelaController@index');
     Route::get('tabelas/{tabela_id}', 'TabelaController@show');
     Route::get('tab-ajax/{tabela_id}', 'TabAjaxController@show');
@@ -37,4 +37,5 @@ Route::get('login', 'BtiController@index')->name('login');
 Route::post('bti-user', 'BtiController@getEmpresa');
 Route::get('erro', 'BtiController@erro')->name('erro');
 
-Route::get('mail', 'BtiController@mail');
+Route::get('abrir-chamado', 'BtiController@chamado');
+Route::post('enviar-chamado', 'BtiController@mail');

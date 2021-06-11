@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Auth;
@@ -13,20 +14,23 @@ class bti extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $request;
 
-    public function __construct(User $user)
+    public function __construct(Request $request)
     {
-        $this->user = $user;
+        $this->request = $request;
     }
 
     public function build()
     {
-        $user = $this->user;
+        $request = $this->request;
 
-        $this->subject('Teste de E-mail Laravel');
-        $this->to($user->email );
+        $this->subject($request->assunto);
+        $this->from( $request->email, $request->name );
 
-        return $this->markdown('mail.teste', compact ('user'));
+        if($request->emailcc)
+            $this->cc($request->emailcc );
+
+        return $this->markdown('mail.body', compact ('request'));
     }
 }

@@ -38,12 +38,46 @@ class BtiController extends Controller
           return view('erro');
     }
 
-    public function mail()
+    public function chamado()
     {
-        $id = 1;
-        $user = User::where('id', $id)->first();
 
-        // return new bti($user);
-        Mail::to($user)->send(new bti($user));
+        $empresa_id = Auth::user()->empresa_id;
+
+        if($empresa_id){
+
+            $empresa = Empresa::find($empresa_id);
+            return view('chamados.form', compact('empresa'));
+        }
+        else
+        return view('erro');
+    }
+
+    public function mail(Request $request)
+    {
+
+        try
+            {
+                Mail::to('chamado@btiestrategica.com.br')->send(new bti($request));
+            }
+            catch (\Swift_RfcComplianceException $e)
+            {
+                $msgErro = "Falha no envio de e-mail : ";
+                $msgErro .= $e->getMessage();
+            }
+
+            if(isset ($e)){
+
+                $erro = ['erro' => $msgErro ];
+
+                return view('chamados.form', compact('request','erro'));
+            }
+
+            else {
+
+                $msg = ['msg' => 'Chamado Registrado com Sucesso' ];
+
+                return view('chamados.form', compact('request','msg'));
+            }
+
     }
 }
