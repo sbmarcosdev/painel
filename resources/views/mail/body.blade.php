@@ -4,10 +4,9 @@
     @endcomponent
 @endslot
 @component('mail::message')
-<html>
-
-        <p>{{ $request->texto }}</p>
 
 
-</html>
+        {{ $request->texto }}
+
+
 @endcomponent
