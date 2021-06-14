@@ -80,9 +80,9 @@
                         @endif
                         @if (Auth::user()->empresa_id)
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('abrir-chamado') }}"> Abrir Chamado </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('tabelas') }}"> Tabelas </a>
@@ -126,6 +126,11 @@
                                 </form>
                             </div>
                         </li>
+                        @if (Auth::user()->empresa_id)
+                        <div>
+                            <a href="{{ url('abrir-chamado') }}" title="Abrir Chamado" ><img src="{{asset('img/talk.png')}}" width="70px" style="position: fixed; right:2%; bottom:5%" ></a>
+                        </div>
+                    @endif
                     @endguest
                 </ul>
             </div>
@@ -135,6 +140,8 @@
     <main class="py-4">
         @yield('content')
     </main>
+
+
 </div>
 </body>
 
